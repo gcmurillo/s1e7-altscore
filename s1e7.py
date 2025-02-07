@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.responses import HTMLResponse, JSONResponse
 
-app = FastAPI()
+app = FastAPI(title="SOS - gcmurillo")
 
 @app.get("/")
 def read_root():
