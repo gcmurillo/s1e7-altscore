@@ -27,3 +27,16 @@ def repair_bay():
 @app.post("/teapot")
 def teapot():
     return JSONResponse(status_code=418, content={"message": "I'm a teapot"})
+
+def calculate_liquid(pressure):
+    return round((pressure + 4.213)/4061.22, 4)
+
+def calculate_vapor(pressure):
+    return round((10.0012 - pressure)/0.3317, 4)
+
+## Se agrega el endpoint para la solucion del ejercicio 9
+@app.get("/phase-change-diagram")
+def phase_change_diagram(pressure: float):
+    liquid = calculate_liquid(pressure)
+    vapor = calculate_vapor(pressure)
+    return { "specific_volume_liquid": liquid, "specific_volume_vapor": vapor }
